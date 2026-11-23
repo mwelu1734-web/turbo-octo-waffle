@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRENDPULSE // 2026 — Global Trend Intelligence & Editorial Radar</title>
+  <meta name="description" content="Real-time editorial intelligence tracking breakout shifts across Artificial Intelligence, Culture, Business, and Sustainable Design." />
+
+  <!-- =====================================================================
+       GOOGLE ADSENSE INTEGRATION
+       1. Replace ca-pub-XXXXXXXXXXXXXXXX with your real AdSense Publisher ID.
+       2. Place an ads.txt file at the root of your domain (e.g. yourdomain.com/ads.txt)
+          containing: google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+       ===================================================================== -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+  <!-- Google Fonts: Space Grotesk, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Space Grotesk"', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              light: '#FF3B30',
+              dark: '#FF453A',
+              accent: '#2563EB',
+            },
+            paper: {
+              bg: '#FAFAFA',
+              card: '#FFFFFF',
+              ink: '#111111',
+              muted: '#52525B',
+              border: '#E4E4E7',
+            },
+            obsidian: {
+              bg: '#0D0D0F',
+              card: '#16161A',
+              ink: '#F4F4F5',
+              muted: '#A1A1AA',
+              border: '#27272A',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Custom Ticker Marquee */
+    @keyframes tickerScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-ticker {
+      display: flex;
+      width: max-content;
+      animation: tickerScroll 36s linear infinite;
+    }
+    .animate-ticker:hover {
+      animation-play-state: paused;
+    }
+    /* Custom subtle scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(161, 161, 170, 0.4);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(161, 161, 170, 0.7);
+    }
+  </style>
+</head>
+<body class="bg-paper-bg text-paper-ink dark:bg-obsidian-bg dark:text-obsidian-ink font-sans antialiased transition-colors duration-200 selection:bg-brand-light selection:text-white">
+
+  <!-- TOP LIVE VELOCITY TICKER -->
+  <div class="bg-paper-ink text-white dark:bg-black border-b border-paper-border dark:border-obsidian-border overflow-hidden py-2 text-xs font-mono">
+    <div class="animate-ticker flex items-center space-x-8 px-4" id="tickerTrack">
+      <!-- Populated dynamically via JS -->
+    </div>
+  </div>
+
+  <!-- STICKY EDITORIAL HEADER -->
+  <header class="sticky top-0 z-40 bg-paper-bg/90 dark:bg-obsidian-bg/90 backdrop-blur-md border-b border-paper-border dark:border-obsidian-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Brand Logo -->
+        <div class="flex items-center space-x-3">
+          <a href="#" onclick="resetFilters(); return false;" class="flex items-center space-x-2.5 group">
+            <span class="w-3 h-3 rounded-full bg-brand-light dark:bg-brand-dark inline-block group-hover:scale-125 transition-transform"></span>
+            <span class="font-display font-bold text-xl sm:text-2xl tracking-tight">
+              TRENDPULSE <span class="font-mono text-xs font-normal text-paper-muted dark:text-obsidian-muted align-top ml-0.5">// 2026</span>
+            </span>
+          </a>
+        </div>
+
+        <!-- Desktop Category Navigation -->
+        <nav class="hidden md:flex items-center space-x-1" aria-label="Trend Categories">
+          <button data-cat="All" class="cat-btn px-3 py-1.5 rounded-full text-sm font-medium transition-colors bg-paper-ink text-white dark:bg-white dark:text-black">All Signals</button>
+          <button data-cat="AI & Tech" class="cat-btn px-3 py-1.5 rounded-full text-sm font-medium text-paper-muted dark:text-obsidian-muted hover:text-paper-ink dark:hover:text-white transition-colors">AI &amp; Tech</button>
+          <button data-cat="Culture" class="cat-btn px-3 py-1.5 rounded-full text-sm font-medium text-paper-muted dark:text-obsidian-muted hover:text-paper-ink dark:hover:text-white transition-colors">Culture</button>
+          <button data-cat="Business" class="cat-btn px-3 py-1.5 rounded-full text-sm font-medium text-paper-muted dark:text-obsidian-muted hover:text-paper-ink dark:hover:text-white transition-colors">Business</button>
+          <button data-cat="Design & Green" class="cat-btn px-3 py-1.5 rounded-full text-sm font-medium text-paper-muted dark:text-obsidian-muted hover:text-paper-ink dark:hover:text-white transition-colors">Design &amp; Green</button>
+        </nav>
+
+        <!-- Action Controls -->
+        <div class="flex items-center space-x-2 sm:space-x-3">
+          <!-- Saved List Drawer Button -->
+          <button id="openSavedBtn" class="relative inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border border-paper-border dark:border-obsidian-border bg-paper-card dark:bg-obsidian-card text-xs font-medium hover:border-paper-ink dark:hover:border-white transition-colors" title="Saved Reading List">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
+            <span class="hidden sm:inline">Saved</span>
+            <span id="savedCountBadge" class="font-mono text-[11px] px-1.5 py-0.2 rounded bg-brand-light/10 text-brand-light dark:bg-brand-dark/20 dark:text-brand-dark font-semibold">0</span>
+          </button>
+
+          <!-- Submit Trend Button -->
+          <button id="openSubmitBtn" class="inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-brand-light hover:bg-red-600 dark:bg-brand-dark dark:hover:bg-red-500 text-white text-xs font-semibold transition-colors shadow-sm">
+            <span>+ Submit Trend</span>
+          </button>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggleBtn" class="p-2 rounded-lg border border-paper-border dark:border-obsidian-border bg-paper-card dark:bg-obsidian-card text-paper-muted dark:text-obsidian-muted hover:text-paper-ink dark:hover:text-white transition-colors" aria-label="Toggle Dark Mode">
+            <svg id="sunIcon" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            <svg id="moonIcon" class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Category Scroll Bar -->
+      <div class="flex md:hidden items-center space-x-2 overflow-x-auto pb-3 pt-1 no-scrollbar">
+        <button data-cat="All" class="cat-btn shrink-0 px-3 py-1 rounded-full text-xs font-medium bg-paper-ink text-white dark:bg-white dark:text-black">All Signals</button>
+        <button data-cat="AI & Tech" class="cat-btn shrink-0 px-3 py-1 rounded-full text-xs font-medium text-paper-muted dark:text-obsidian-muted border border-paper-border dark:border-obsidian-border">AI &amp; Tech</button>
+        <button data-cat="Culture" class="cat-btn shrink-0 px-3 py-1 rounded-full text-xs font-medium text-paper-muted dark:text-obsidian-muted border border-paper-border dark:border-obsidian-border">Culture</button>
+        <button data-cat="Business" class="cat-btn shrink-0 px-3 py-1 rounded-full text-xs font-medium text-paper-muted dark:text-obsidian-muted border border-paper-border dark:border-obsidian-border">Business</button>
+        <button data-cat="Design & Green" class="cat-btn shrink-0 px-3 py-1 rounded-full text-xs font-medium text-paper-muted dark:text-obsidian-muted border border-paper-border dark:border-obsidian-border">Design &amp; Green</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+
+    <!-- HERO FEATURED LEAD STORY -->
+    <section id="heroSection" aria-label="Lead Trend Report">
+      <!-- Dynamically rendered by JS -->
+    </section>
+
+    <!-- FILTER, MOMENTUM & SEARCH CONTROL BAR -->
+    <section class="bg-paper-card dark:bg-obsidian-card border border-paper-border dark:border-obsidian-border rounded-2xl p-4 sm:p-5 shadow-sm">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        <!-- Momentum Pills -->
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="font-mono text-xs uppercase tracking-wider text-paper-muted dark:text-obsidian-muted mr-1">Velocity:</span>
+          <button data-stage="All" class="stage-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium bg-paper-ink text-white dark:bg-white dark:text-black transition-colors">All Stages</button>
+          <button data-stage="Breakout" class="stage-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium border border-paper-border dark:border-obsidian-border text-paper-muted dark:text-obsidian-muted hover:border-brand-light transition-colors">🔥 Breakout</button>
+          <button data-stage="Rising" class="stage-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium border border-paper-border dark:border-obsidian-border text-paper-muted dark:text-obsidian-muted hover:border-brand-accent transition-colors">📈 Rising</button>
+          <button data-stage="Mainstream" class="stage-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium border border-paper-border dark:border-obsidian-border text-paper-muted dark:text-obsidian-muted hover:border-emerald-500 transition-colors">🌐 Mainstream</button>
+        </div>
+
+        <!-- Search Input & Result Count -->
+        <div class="flex items-center gap-3 w-full lg:w-auto">
+          <div class="relative flex-1 lg:w-72">
+            <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-paper-muted dark:text-obsidian-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input type="text" id="searchInput" placeholder="Search trends, tags, signals..." class="w-full pl-9 pr-4 py-2 rounded-lg text-sm bg-paper-bg dark:bg-obsidian-bg border border-paper-border dark:border-obsidian-border focus:outline-none focus:border-brand-accent transition-colors" />
+          </div>
+          <span id="resultCount" class="font-mono text-xs text-paper-muted dark:text-obsidian-muted whitespace-nowrap">8 signals</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLISHER-SAFE RESPONSIVE AD SLOT (Separated from primary controls) -->
+    <aside aria-label="Advertisement" class="my-6">
+      <div class="border border-dashed border-paper-border dark:border-obsidian-border rounded-xl p-3 bg-paper-card/60 dark:bg-obsidian-card/60 text-center">
+        <div class="flex items-center justify-center gap-2 mb-1.5">
+          <span class="block font-mono text-[10px] uppercase tracking-widest text-paper-muted dark:text-obsidian-muted">Advertisement</span>
+          <span id="adStatusPill" class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400">Preview Placeholder</span>
+        </div>
+        <!-- Real Google AdSense Responsive Display Unit -->
+        <div id="adsenseContainer" class="min-h-[90px] w-full flex items-center justify-center overflow-hidden rounded-lg">
+          <ins class="adsbygoogle"
+               style="display:block; width:100%;"
+               data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+               data-ad-slot="1234567890"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <div id="adsenseFallback" class="w-full py-4 px-3 bg-paper-bg dark:bg-obsidian-bg rounded-lg border border-paper-border/60 dark:border-obsidian-border/60 flex flex-col sm:flex-row items-center justify-between gap-2 text-left">
+            <div>
+              <p class="text-xs font-semibold text-paper-ink dark:text-obsidian-ink">Google AdSense Responsive Leaderboard Slot (728×90 / Fluid)</p>
+              <p class="text-[11px] text-paper-muted dark:text-obsidian-muted">Replace <code class="font-mono">ca-pub-XXXXXXXXXXXXXXXX</code> and <code class="font-mono">data-ad-slot</code> in <code class="font-mono">index.html</code> to serve live ads.</p>
+            </div>
+            <button onclick="openInfoModal('adsense')" class="shrink-0 font-mono text-[11px] px-2.5 py-1 rounded border border-paper-border dark:border-obsidian-border hover:border-brand-accent transition-colors">
+              Setup Guide →
+            </button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN TREND RADAR GRID -->
+    <section aria-label="Trend Feed">
+      <div id="trendGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Populated dynamically via JS -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="hidden text-center py-16 bg-paper-card dark:bg-obsidian-card border border-paper-border dark:border-obsidian-border rounded-2xl">
+        <p class="font-display text-lg font-bold mb-1">No matching trend signals found</p>
+        <p class="text-sm text-paper-muted dark:text-obsidian-muted mb-4">Try adjusting your category filter, velocity stage, or search keywords.</p>
+        <button onclick="resetFilters()" class="px-4 py-2 rounded-lg bg-paper-ink text-white dark:bg-white dark:text-black text-xs font-semibold">Reset All Filters</button>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER BRIEFING SECTION -->
+    <section class="bg-paper-ink text-white dark:bg-obsidian-card border border-paper-border dark:border-obsidian-border rounded-2xl p-6 sm:p-10">
+      <div class="max-w-3xl mx-auto text-center space-y-4">
+        <span class="inline-block font-mono text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-brand-light/20 text-brand-light">Weekly Intelligence Dispatch</span>
+        <h2 class="font-display text-2xl sm:text-3xl font-bold tracking-tight">Stay Ahead of the Adoption Curve</h2>
+        <p class="text-sm sm:text-base text-zinc-300 dark:text-obsidian-muted">
+          Every Sunday, our editors distill 50+ emerging data points across AI, consumer shifts, and clean tech into a 4-minute executive brief.
+        </p>
+        <form id="newsletterForm" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto pt-2">
+          <input type="email" id="newsletterEmail" required placeholder="you@domain.com" class="flex-1 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-zinc-400 text-sm focus:outline-none focus:border-brand-light" />
+          <button type="submit" class="px-5 py-2.5 rounded-lg bg-brand-light hover:bg-red-600 text-white text-sm font-semibold transition-colors whitespace-nowrap">
+            Subscribe Free
+          </button>
+        </form>
+        <p id="newsletterFeedback" class="text-xs font-mono text-emerald-400 hidden"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- EDITORIAL FOOTER WITH ESSENTIAL PUBLISHER PAGES -->
+  <footer class="border-t border-paper-border dark:border-obsidian-border bg-paper-card dark:bg-obsidian-card mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="md:col-span-2 space-y-3">
+          <div class="flex items-center space-x-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-brand-light"></span>
+            <span class="font-display font-bold text-lg">TRENDPULSE // 2026</span>
+          </div>
+          <p class="text-sm text-paper-muted dark:text-obsidian-muted max-w-md leading-relaxed">
+            An independent digital publication dedicated to tracking early-stage cultural, technological, and economic signals before they hit mainstream saturation.
+          </p>
+          <p class="font-mono text-xs text-paper-muted dark:text-obsidian-muted">
+            © 2026 TrendPulse Media. All rights reserved.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-mono text-xs uppercase tracking-wider font-semibold mb-3">Categories</h3>
+          <ul class="space-y-2 text-sm text-paper-muted dark:text-obsidian-muted">
+            <li><button onclick="selectCategory('AI & Tech')" class="hover:text-paper-ink dark:hover:text-white">AI &amp; Autonomous Systems</button></li>
+            <li><button onclick="selectCategory('Culture')" class="hover:text-paper-ink dark:hover:text-white">Digital Culture &amp; Media</button></li>
+            <li><button onclick="selectCategory('Business')" class="hover:text-paper-ink dark:hover:text-white">Future of Work &amp; Business</button></li>
+            <li><button onclick="selectCategory('Design & Green')" class="hover:text-paper-ink dark:hover:text-white">Climate &amp; Material Design</button></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-mono text-xs uppercase tracking-wider font-semibold mb-3">Publication &amp; Legal</h3>
+          <ul class="space-y-2 text-sm text-paper-muted dark:text-obsidian-muted">
+            <li><button onclick="openInfoModal('about')" class="hover:text-paper-ink dark:hover:text-white">About TrendPulse</button></li>
+            <li><button onclick="openInfoModal('methodology')" class="hover:text-paper-ink dark:hover:text-white">Editorial Methodology</button></li>
+            <li><button onclick="openInfoModal('adsense')" class="hover:text-paper-ink dark:hover:text-white">AdSense &amp; ads.txt Guide</button></li>
+            <li><button onclick="openInfoModal('contact')" class="hover:text-paper-ink dark:hover:text-white">Contact &amp; Press</button></li>
+            <li><button onclick="openInfoModal('privacy')" class="hover:text-paper-ink dark:hover:text-white">Privacy Policy &amp; Cookies</button></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       MODAL 1: DISTRACTION-FREE ARTICLE READER MODAL
+       ===================================================================== -->
+  <div id="articleModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm overflow-y-auto p-4 sm:p-6">
+    <div class="max-w-3xl mx-auto bg-paper-card dark:bg-obsidian-card border border-paper-border dark:border-obsidian-border rounded-2xl shadow-2xl overflow-hidden my-6">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-paper-border dark:border-obsidian-border">
+        <div class="flex items-center space-x-2 font-mono text-xs">
+          <span id="modalCategory" class="px-2.5 py-0.5 rounded bg-brand-light/10 text-brand-light font-semibold"></span>
+          <span id="modalVelocity" class="text-emerald-600 dark:text-emerald-400 font-semibold"></span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button id="modalBookmarkBtn" class="px-3 py-1.5 rounded-lg border border-paper-border dark:border-obsidian-border text-xs font-medium hover:bg-paper-bg dark:hover:bg-obsidian-bg transition-colors">
+            Bookmark
+          </button>
+          <button onclick="closeArticleModal()" class="p-1.5 rounded-lg text-paper-muted hover:text-paper-ink dark:hover:text-white" aria-label="Close modal">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <article class="p-6 sm:p-8 space-y-6">
+        <div class="space-y-3">
+          <h2 id="modalTitle" class="font-display text-2xl sm:text-3xl font-bold leading-tight"></h2>
+          <div class="flex flex-wrap items-center gap-3 text-xs font-mono text-paper-muted dark:text-obsidian-muted">
+            <span id="modalAuthor"></span>
+            <span>•</span>
+            <span id="modalDate"></span>
+            <span>•</span>
+            <span id="modalReadTime"></span>
+          </div>
+        </div>
+
+        <img id="modalImage" src="" alt="" class="w-full h-64 sm:h-80 object-cover rounded-xl border border-paper-border dark:border-obsidian-border" />
+
+        <div id="modalBody" class="space-y-4 text-base leading-relaxed text-paper-ink/90 dark:text-obsidian-ink/90">
+          <!-- Full editorial paragraphs injected via JS -->
+        </div>
+
+        <!-- Key Strategic Takeaways Box -->
+        <div class="bg-paper-bg dark:bg-obsidian-bg border border-paper-border dark:border-obsidian-border rounded-xl p-5 space-y-2.5">
+          <h3 class="font-mono text-xs uppercase tracking-wider font-semibold text-brand-accent">Why This Signal Matters</h3>
+          <ul id="modalTakeaways" class="list-disc list-inside space-y-1.5 text-sm text-paper-muted dark:text-obsidian-muted">
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 2: SAVED READING LIST DRAWER
+       ===================================================================== -->
+  <div id="savedDrawer" class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-xs">
+    <div class="fixed right-0 top-0 bottom-0 w-full max-w-md bg-paper-card dark:bg-obsidian-card border-l border-paper-border dark:border-obsidian-border shadow-2xl flex flex-col">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-paper-border dark:border-obsidian-border">
+        <h2 class="font-display text-lg font-bold">Saved Trend Briefs</h2>
+        <button id="closeSavedBtn" class="p-1.5 rounded-lg text-paper-muted hover:text-paper-ink dark:hover:text-white">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div id="savedListContainer" class="flex-1 overflow-y-auto p-6 space-y-4">
+        <!-- Populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 3: SUBMIT NEW TREND BRIEF MODAL
+       ===================================================================== -->
+  <div id="submitModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm overflow-y-auto p-4">
+    <div class="max-w-lg mx-auto bg-paper-card dark:bg-obsidian-card border border-paper-border dark:border-obsidian-border rounded-2xl shadow-2xl my-10 p-6 space-y-5">
+      <div class="flex items-center justify-between border-b border-paper-border dark:border-obsidian-border pb-3">
+        <h2 class="font-display text-xl font-bold">Publish a Trend Signal</h2>
+        <button id="closeSubmitBtn" class="p-1 text-paper-muted hover:text-paper-ink dark:hover:text-white">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="submitTrendForm" class="space-y-4">
+        <div>
+          <label class="block text-xs font-mono uppercase mb-1">Headline</label>
+          <input type="text" id="newTitle" required placeholder="e.g., Local-First AI Agents Replace SaaS Dashboards" class="w-full px-3 py-2 rounded-lg bg-paper-bg dark:bg-obsidian-bg border border-paper-border dark:border-obsidian-border text-sm" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-mono uppercase mb-1">Category</label>
+            <select id="newCategory" class="w-full px-3 py-2 rounded-lg bg-paper-bg dark:bg-obsidian-bg border border-paper-border dark:border-obsidian-border text-sm">
+              <option value="AI & Tech">AI &amp; Tech</option>
+              <option value="Culture">Culture</option>
+              <option value="Business">Business</option>
+              <option value="Design & Green">Design &amp; Green</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase mb-1">Momentum Stage</label>
+            <select id="newStage" class="w-full px-3 py-2 rounded-lg bg-paper-bg dark:bg-obsidian-bg border border-paper-border dark:border-obsidian-border text-sm">
+              <option value="Breakout">Breakout</option>
+              <option value="Rising">Rising</option>
+              <option value="Mainstream">Mainstream</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-mono uppercase mb-1">Search Growth %</label>
+            <input type="text" id="newGrowth" required placeholder="+280%" value="+240%" class="w-full px-3 py-2 rounded-lg bg-paper-bg dark:bg-obsidian-bg border border-paper-border dark:border-obsidian-border text-sm font-mono" />
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase mb-1">Author Name</label>
+            <input type="text" id="newAuthor" required placeholder="Your Name" class="w-full px-3 py-2 rounded-lg bg-paper-bg dark:bg-obsidian-bg border border-paper-border dark:border-obsidian-border text-sm" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono uppercase mb-1">Executive Summary</label>
+          <textarea id="newSummary" rows="2" required placeholder="Concise overview of why this trend is accelerating..." class="w-full px-3 py-2 rounded-lg bg-paper-bg dark:bg-obsidian-bg border border-paper-border dark:border-obsidian-border text-sm"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono uppercase mb-1">Full Analysis</label>
+          <textarea id="newBody" rows="4" required placeholder="Detailed breakdown, evidence, and market implications..." class="w-full px-3 py-2 rounded-lg bg-paper-bg dark:bg-obsidian-bg border border-paper-border dark:border-obsidian-border text-sm"></textarea>
+        </div>
+
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" id="cancelSubmitBtn" class="px-4 py-2 rounded-lg border border-paper-border dark:border-obsidian-border text-xs font-medium">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-lg bg-brand-light hover:bg-red-600 text-white text-xs font-semibold">Publish to Radar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 4: PUBLISHER INFO MODAL (ABOUT / CONTACT / PRIVACY / ADSENSE)
+       ===================================================================== -->
+  <div id="infoModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm overflow-y-auto p-4">
+    <div class="max-w-2xl mx-auto bg-paper-card dark:bg-obsidian-card border border-paper-border dark:border-obsidian-border rounded-2xl shadow-2xl my-12 p-6 sm:p-8 space-y-4">
+      <div class="flex items-center justify-between border-b border-paper-border dark:border-obsidian-border pb-3">
+        <h2 id="infoModalTitle" class="font-display text-xl font-bold"></h2>
+        <button onclick="closeInfoModal()" class="p-1 text-paper-muted hover:text-paper-ink dark:hover:text-white">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div id="infoModalContent" class="text-sm leading-relaxed space-y-3 text-paper-muted dark:text-obsidian-muted"></div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       APPLICATION JAVASCRIPT & CURATED 2026 TREND DATASET
+       ===================================================================== -->
+  <script>
+    // ---------------------------------------------------------------------
+    // ADSENSE CONFIGURATION & INITIALIZATION
+    // ---------------------------------------------------------------------
+    const ADSENSE_CONFIG = {
+      publisherId: "ca-pub-XXXXXXXXXXXXXXXX", // Replace with your ca-pub-XXXXXXXXXXXXXXXX
+      displaySlotId: "1234567890"            // Replace with your responsive ad unit slot ID
+    };
+
+    function initAdSenseIntegration() {
+      const isConfigured = !ADSENSE_CONFIG.publisherId.includes("XXXX") && ADSENSE_CONFIG.displaySlotId !== "1234567890";
+      const statusPill = document.getElementById("adStatusPill");
+      const fallback = document.getElementById("adsenseFallback");
+      const insEl = document.querySelector("#adsenseContainer ins.adsbygoogle");
+
+      if (insEl) {
+        insEl.setAttribute("data-ad-client", ADSENSE_CONFIG.publisherId);
+        insEl.setAttribute("data-ad-slot", ADSENSE_CONFIG.displaySlotId);
+      }
+
+      if (isConfigured) {
+        if (fallback) fallback.classList.add("hidden");
+        if (statusPill) {
+          statusPill.textContent = "AdSense Active";
+          statusPill.className = "font-mono text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400";
+        }
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (err) {
+          console.warn("AdSense initialization queued:", err);
+        }
+      }
+    }
+
+    const INITIAL_TRENDS = [
+      {
+        id: "trend-1",
+        featured: true,
+        title: "Autonomous Micro-Agents Are Replacing Traditional SaaS Interfaces",
+        category: "AI & Tech",
+        stage: "Breakout",
+        growth: "+420%",
+        author: "Elena Vance",
+        date: "Nov 22, 2026",
+        readTime: "5 min read",
+        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
+        summary: "Instead of logging into dozens of dashboards, enterprise teams are deploying background goal-driven agents that negotiate workflows, reconcile records, and surface only human-approval checkpoints.",
+        body: [
+          "For over a decade, software innovation meant adding another browser tab with another sidebar. In late 2026, that paradigm is inverting. Companies are shifting budgets from seat-based SaaS licenses toward outcome-based autonomous micro-agents.",
+          "Unlike early chatbots that waited for human prompts, modern micro-agents subscribe directly to event streams—such as incoming supplier invoices, customer support escalations, or repository commits—and execute multi-step resolutions independently.",
+          "Product designers are now focusing on 'exception-first interfaces': minimalist command feeds where humans audit high-stakes decisions rather than manually clicking through routine forms."
+        ],
+        takeaways: [
+          "Seat-based software pricing is facing pressure from usage and outcome-based billing.",
+          "Human-in-the-loop verification UX is becoming a primary differentiator for B2B tools.",
+          "Small teams are achieving output levels previously requiring 5x operational headcount."
+        ],
+        tags: ["Autonomous Agents", "SaaS", "Enterprise AI", "Workflows"]
+      },
+      {
+        id: "trend-2",
+        featured: false,
+        title: "The Analog Sanctuary Movement: Offline Supper Clubs & Dumbphone Weekends",
+        category: "Culture",
+        stage: "Breakout",
+        growth: "+315%",
+        author: "Marcus Thorne",
+        date: "Nov 20, 2026",
+        readTime: "4 min read",
+        image: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=900&q=80",
+        summary: "Urban Gen Z and millennial communities are paying premium membership fees for phone-locked dining rooms, physical vinyl listening bars, and print-only neighborhood zines.",
+        body: [
+          "As algorithmic feeds grow louder and synthetic media becomes indistinguishable from reality, intentional friction has emerged as the ultimate luxury status symbol.",
+          "Across major cities, 'no-phone supper clubs' require guests to seal their devices in magnetic pouches at the door. Attendance has surged over 300% year-over-year, driven by young professionals craving unrecorded, present-tense conversation.",
+          "Simultaneously, secondary weekend phones lacking web browsers are seeing brisk sales among creatives looking to reclaim deep reading and uninterrupted rest."
+        ],
+        takeaways: [
+          "In-person hospitality venues with strict 'no-camera' policies report higher repeat bookings.",
+          "Physical print artifacts and tactile hardware are experiencing a cultural renaissance.",
+          "Consumer wellness is shifting from tracking metrics to digital disconnection."
+        ],
+        tags: ["Analog", "Offline Culture", "Hospitality", "Gen Z"]
+      },
+      {
+        id: "trend-3",
+        featured: false,
+        title: "Sodium-Ion Grid Storage Enters Commercial Utility Rollout",
+        category: "Design & Green",
+        stage: "Rising",
+        growth: "+195%",
+        author: "Dr. Aris Patel",
+        date: "Nov 18, 2026",
+        readTime: "6 min read",
+        image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=900&q=80",
+        summary: "Abundant, lithium-free sodium-ion battery packs are lowering stationary energy storage costs and operating reliably across extreme temperature swings.",
+        body: [
+          "While lithium-ion continues to dominate lightweight electric vehicles, stationary grid storage does not require ultra-high gravimetric energy density—it demands safety, longevity, and low cost per kilowatt-hour.",
+          "Sodium-ion installations deployed across solar farms and microgrids in 2026 demonstrate superior thermal stability and zero reliance on scarce cobalt or lithium supply chains.",
+          "For commercial buildings and industrial parks, pairing rooftop solar with sodium-ion battery banks is rapidly reducing peak-demand utility charges."
+        ],
+        takeaways: [
+          "Zero lithium or cobalt dependency insulates battery projects from mineral price spikes.",
+          "Wide operating temperature tolerances eliminate expensive active cooling infrastructure.",
+          "Accelerates distributed microgrid adoption in emerging industrial corridors."
+        ],
+        tags: ["Clean Energy", "Sodium-Ion", "Grid Storage", "Sustainability"]
+      },
+      {
+        id: "trend-4",
+        featured: false,
+        title: "Fractional C-Suite Collectives Become the Default Startup Growth Engine",
+        category: "Business",
+        stage: "Mainstream",
+        growth: "+140%",
+        author: "Claire Beaumont",
+        date: "Nov 16, 2026",
+        readTime: "4 min read",
+        image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80",
+        summary: "Seed and Series A founders are bypassing $350k full-time executive hires in favor of vetted pods of fractional CFOs, CMOs, and Heads of AI.",
+        body: [
+          "Capital efficiency remains the top mandate for venture-backed and bootstrapped companies alike. Rather than locking in heavy fixed executive payroll early, founders are assembling modular leadership teams.",
+          "Unlike traditional solo consultants, 2026 fractional executives operate in coordinated 'pods'—bringing pre-built playbooks, shared analytics stacks, and cross-functional alignment from day one.",
+          "Experienced operators are increasingly choosing portfolio careers that blend equity stakes across three to four high-growth companies."
+        ],
+        takeaways: [
+          "Reduces early executive burn rate by 45% to 60% while maintaining senior strategic oversight.",
+          "Fractional pods deliver faster implementation than isolated freelance advisors.",
+          "Equity-plus-retainer compensation models align long-term incentives."
+        ],
+        tags: ["Future of Work", "Startups", "Fractional Leadership", "Operations"]
+      },
+      {
+        id: "trend-5",
+        featured: false,
+        title: "Biophilic Acoustic Architecture in Hybrid Workspaces",
+        category: "Design & Green",
+        stage: "Rising",
+        growth: "+175%",
+        author: "Soren Lindqvist",
+        date: "Nov 14, 2026",
+        readTime: "3 min read",
+        image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80",
+        summary: "Mycelium acoustic panels, living moss walls, and circadian timber interiors are replacing sterile glass cubicles to combat open-office fatigue.",
+        body: [
+          "As companies redesign offices to earn the commute, acoustic comfort and biophilic materials have moved from decorative afterthoughts to core architectural specifications.",
+          "Grown mycelium tiles offer class-A sound absorption while remaining 100% biodegradable, outperforming synthetic petrochemical foams in both indoor air quality and aesthetic warmth."
+        ],
+        takeaways: [
+          "Mycelium and compressed hemp panels cut reverberation while lowering embodied carbon.",
+          "Acoustic zoning is now the top employee-requested feature in collaborative offices."
+        ],
+        tags: ["Architecture", "Biophilic Design", "Mycelium", "Workspace"]
+      },
+      {
+        id: "trend-6",
+        featured: false,
+        title: "Micro-Dramas & Vertical Cinema Capture Mobile Prime Time",
+        category: "Culture",
+        stage: "Breakout",
+        growth: "+380%",
+        author: "Kenji Takahashi",
+        date: "Nov 11, 2026",
+        readTime: "4 min read",
+        image: "https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=900&q=80",
+        summary: "Scripted 90-second vertical cliffhanger episodes designed specifically for commuter viewing are generating massive micropayment revenues globally.",
+        body: [
+          "Short-form video has evolved beyond creator vlogs into high-tempo serialized fiction. Produced with cinema-grade lighting in 9:16 aspect ratios, micro-dramas pack a complete emotional hook and plot twist into every 90-second installment.",
+          "Viewers unlock multi-episode arcs through seamless micro-transactions or rewarded ad breaks, creating a lucrative new studio ecosystem outside traditional streaming platforms."
+        ],
+        takeaways: [
+          "Mobile-native pacing prioritizes visual storytelling within the first 3 seconds.",
+          "Episodic micropayments demonstrate high conversion among daily transit commuters."
+        ],
+        tags: ["Entertainment", "Vertical Video", "Creator Economy", "Media"]
+      },
+      {
+        id: "trend-7",
+        featured: false,
+        title: "On-Device Small Language Models (SLMs) Power Offline Field Operations",
+        category: "AI & Tech",
+        stage: "Rising",
+        growth: "+260%",
+        author: "Elena Vance",
+        date: "Nov 09, 2026",
+        readTime: "5 min read",
+        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80",
+        summary: "Quantized 3B–7B parameter models running locally on smartphones and rugged tablets enable zero-latency diagnostics without cloud connectivity.",
+        body: [
+          "Not every AI workload belongs in a hyperscale data center. Civil engineers, agricultural agronomists, and healthcare workers operating in low-connectivity environments are adopting quantized Small Language Models that run directly on device NPUs.",
+          "Local inference eliminates API latency, preserves strict data privacy, and ensures uninterrupted intelligence in remote field locations."
+        ],
+        takeaways: [
+          "Zero cloud API costs and complete data sovereignty on edge hardware.",
+          "Domain-tuned 4B models match large models on specialized technical manuals."
+        ],
+        tags: ["Edge AI", "SLMs", "Offline Tech", "Hardware"]
+      },
+      {
+        id: "trend-8",
+        featured: false,
+        title: "Hyper-Local Cold-Chain Micro-Hubs Transform Perishable Supply",
+        category: "Business",
+        stage: "Mainstream",
+        growth: "+130%",
+        author: "Claire Beaumont",
+        date: "Nov 06, 2026",
+        readTime: "4 min read",
+        image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80",
+        summary: "Solar-powered modular cold storage units placed near peri-urban farms are slashing post-harvest spoilage by up to 40%.",
+        body: [
+          "Post-harvest loss has long been one of the biggest bottlenecks in agricultural profitability. Modular, containerized cold-chain hubs deployed at cooperative collection points allow smallholder farmers to preserve fresh produce immediately after harvest.",
+          "Connected inventory sensors match stored supply directly with urban grocers and hospitality buyers in real time."
+        ],
+        takeaways: [
+          "Extends shelf life of high-value horticulture crops by 7 to 14 days.",
+          "Pay-as-you-store crate pricing removes upfront capital barriers for growers."
+        ],
+        tags: ["Supply Chain", "AgriTech", "Logistics", "Cold Chain"]
+      }
+    ];
+
+    // ---------------------------------------------------------------------
+    // STATE MANAGEMENT & LOCALSTORAGE PERSISTENCE
+    // ---------------------------------------------------------------------
+    let trends = JSON.parse(localStorage.getItem('tp_trends_2026')) || INITIAL_TRENDS;
+    let savedIds = JSON.parse(localStorage.getItem('tp_saved_2026')) || [];
+    let selectedCategory = 'All';
+    let selectedStage = 'All';
+    let searchQuery = '';
+    let activeModalTrendId = null;
+
+    // ---------------------------------------------------------------------
+    // INITIALIZATION
+    // ---------------------------------------------------------------------
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      initAdSenseIntegration();
+      renderTicker();
+      renderHero();
+      renderGrid();
+      updateSavedBadge();
+      bindEvents();
+    });
+
+    // ---------------------------------------------------------------------
+    // THEME HANDLING
+    // ---------------------------------------------------------------------
+    function initTheme() {
+      const savedTheme = localStorage.getItem('tp_theme');
+      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    }
+
+    document.getElementById('themeToggleBtn').addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('tp_theme', isDark ? 'dark' : 'light');
+    });
+
+    // ---------------------------------------------------------------------
+    // RENDER TICKER
+    // ---------------------------------------------------------------------
+    function renderTicker() {
+      const track = document.getElementById('tickerTrack');
+      const itemsHtml = trends.map(t => `
+        <button onclick="openArticleModal('${t.id}')" class="inline-flex items-center space-x-2 hover:text-brand-light transition-colors">
+          <span class="text-emerald-400 font-semibold">${t.growth}</span>
+          <span>${t.title}</span>
+          <span class="text-zinc-500">//</span>
+        </button>
+      `).join('');
+      // Duplicate for seamless infinite loop
+      track.innerHTML = itemsHtml + itemsHtml;
+    }
+
+    // ---------------------------------------------------------------------
+    // RENDER HERO LEAD STORY
+    // ---------------------------------------------------------------------
+    function renderHero() {
+      const heroContainer = document.getElementById('heroSection');
+      const lead = trends.find(t => t.featured) || trends[0];
+      if (!lead) return;
+
+      const isSaved = savedIds.includes(lead.id);
+
+      heroContainer.innerHTML = `
+        <div class="group bg-paper-card dark:bg-obsidian-card border border-paper-border dark:border-obsidian-border rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all">
+          <div class="grid grid-cols-1 lg:grid-cols-12">
+            <div class="lg:col-span-7 relative overflow-hidden bg-zinc-900 min-h-[280px] sm:min-h-[380px]">
+              <img src="${lead.image}" alt="${lead.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute top-4 left-4 flex items-center space-x-2">
+                <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-brand-light text-white shadow">LEAD SIGNAL</span>
+                <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-black/75 text-emerald-400 backdrop-blur-xs">${lead.growth} Velocity</span>
+              </div>
+            </div>
+            <div class="lg:col-span-5 p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-6">
+              <div class="space-y-4">
+                <div class="flex items-center justify-between text-xs font-mono text-paper-muted dark:text-obsidian-muted">
+                  <span class="uppercase tracking-wider font-semibold text-brand-accent">${lead.category}</span>
+                  <span>${lead.date} • ${lead.readTime}</span>
+                </div>
+                <h1 onclick="openArticleModal('${lead.id}')" class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight cursor-pointer hover:text-brand-light dark:hover:text-brand-dark transition-colors">
+                  ${lead.title}
+                </h1>
+                <p class="text-sm sm:text-base text-paper-muted dark:text-obsidian-muted leading-relaxed">
+                  ${lead.summary}
+                </p>
+              </div>
+
+              <div class="pt-4 border-t border-paper-border dark:border-obsidian-border flex items-center justify-between">
+                <div class="text-xs font-mono">
+                  <span class="text-paper-muted dark:text-obsidian-muted">By</span> <span class="font-semibold">${lead.author}</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="toggleBookmark('${lead.id}')" class="p-2 rounded-lg border border-paper-border dark:border-obsidian-border hover:border-paper-ink dark:hover:border-white transition-colors" title="Save Trend">
+                    <svg class="w-4 h-4 ${isSaved ? 'fill-brand-light text-brand-light' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
+                  </button>
+                  <button onclick="openArticleModal('${lead.id}')" class="px-4 py-2 rounded-lg bg-paper-ink text-white dark:bg-white dark:text-black text-xs font-semibold hover:opacity-90 transition-opacity">
+                    Read Briefing →
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // ---------------------------------------------------------------------
+    // RENDER TREND GRID
+    // ---------------------------------------------------------------------
+    function renderGrid() {
+      const grid = document.getElementById('trendGrid');
+      const emptyState = document.getElementById('emptyState');
+      const resultCount = document.getElementById('resultCount');
+
+      const filtered = trends.filter(item => {
+        const matchesCat = selectedCategory === 'All' || item.category === selectedCategory;
+        const matchesStage = selectedStage === 'All' || item.stage === selectedStage;
+        const q = searchQuery.toLowerCase().trim();
+        const matchesQuery = !q ||
+          item.title.toLowerCase().includes(q) ||
+          item.summary.toLowerCase().includes(q) ||
+          item.category.toLowerCase().includes(q) ||
+          (item.tags && item.tags.some(tag => tag.toLowerCase().includes(q)));
+        return matchesCat && matchesStage && matchesQuery;
+      });
+
+      resultCount.textContent = `${filtered.length} signal${filtered.length === 1 ? '' : 's'}`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      grid.innerHTML = filtered.map(item => {
+        const isSaved = savedIds.includes(item.id);
+        const stageBadgeColor =
+          item.stage === 'Breakout' ? 'bg-red-500/10 text-brand-light dark:text-brand-dark' :
+          item.stage === 'Rising' ? 'bg-blue-500/10 text-brand-accent' :
+          'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400';
+
+        return `
+          <article class="group flex flex-col justify-between bg-paper-card dark:bg-obsidian-card border border-paper-border dark:border-obsidian-border rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all">
+            <div>
+              <div class="relative h-48 overflow-hidden bg-zinc-900 cursor-pointer" onclick="openArticleModal('${item.id}')">
+                <img src="${item.image}" alt="${item.title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div class="absolute top-3 left-3 flex items-center space-x-1.5">
+                  <span class="px-2.5 py-0.5 rounded-md text-[11px] font-mono font-semibold bg-black/75 text-white backdrop-blur-xs">${item.category}</span>
+                </div>
+                <div class="absolute bottom-3 right-3">
+                  <span class="px-2.5 py-0.5 rounded-md text-[11px] font-mono font-semibold bg-black/80 text-emerald-400">${item.growth}</span>
+                </div>
+              </div>
+
+              <div class="p-5 space-y-3">
+                <div class="flex items-center justify-between text-xs font-mono">
+                  <span class="px-2 py-0.5 rounded ${stageBadgeColor} font-semibold">${item.stage}</span>
+                  <span class="text-paper-muted dark:text-obsidian-muted">${item.readTime}</span>
+                </div>
+
+                <h3 onclick="openArticleModal('${item.id}')" class="font-display text-lg font-bold leading-snug cursor-pointer group-hover:text-brand-light dark:group-hover:text-brand-dark transition-colors">
+                  ${item.title}
+                </h3>
+
+                <p class="text-sm text-paper-muted dark:text-obsidian-muted line-clamp-3 leading-relaxed">
+                  ${item.summary}
+                </p>
+              </div>
+            </div>
+
+            <div class="px-5 py-3.5 border-t border-paper-border dark:border-obsidian-border flex items-center justify-between text-xs">
+              <span class="font-mono text-paper-muted dark:text-obsidian-muted">${item.date}</span>
+              <div class="flex items-center space-x-2">
+                <button onclick="toggleBookmark('${item.id}')" class="p-1.5 rounded-lg hover:bg-paper-bg dark:hover:bg-obsidian-bg transition-colors" title="Bookmark">
+                  <svg class="w-4 h-4 ${isSaved ? 'fill-brand-light text-brand-light' : 'text-paper-muted'}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
+                </button>
+                <button onclick="openArticleModal('${item.id}')" class="font-mono font-semibold text-brand-accent hover:underline">
+                  Analyze →
+                </button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // ---------------------------------------------------------------------
+    // FILTER & SEARCH CONTROLS
+    // ---------------------------------------------------------------------
+    function selectCategory(cat) {
+      selectedCategory = cat;
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        if (btn.dataset.cat === cat) {
+          btn.className = 'cat-btn shrink-0 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-paper-ink text-white dark:bg-white dark:text-black transition-colors';
+        } else {
+          btn.className = 'cat-btn shrink-0 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium text-paper-muted dark:text-obsidian-muted hover:text-paper-ink dark:hover:text-white transition-colors';
+        }
+      });
+      renderGrid();
+    }
+
+    function selectStage(stage) {
+      selectedStage = stage;
+      document.querySelectorAll('.stage-btn').forEach(btn => {
+        if (btn.dataset.stage === stage) {
+          btn.className = 'stage-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium bg-paper-ink text-white dark:bg-white dark:text-black transition-colors';
+        } else {
+          btn.className = 'stage-btn px-3 py-1.5 rounded-lg text-xs font-mono font-medium border border-paper-border dark:border-obsidian-border text-paper-muted dark:text-obsidian-muted hover:border-paper-ink transition-colors';
+        }
+      });
+      renderGrid();
+    }
+
+    function resetFilters() {
+      searchQuery = '';
+      document.getElementById('searchInput').value = '';
+      selectCategory('All');
+      selectStage('All');
+    }
+
+    function bindEvents() {
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.addEventListener('click', () => selectCategory(btn.dataset.cat));
+      });
+
+      document.querySelectorAll('.stage-btn').forEach(btn => {
+        btn.addEventListener('click', () => selectStage(btn.dataset.stage));
+      });
+
+      document.getElementById('searchInput').addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        renderGrid();
+      });
+
+      // Saved Drawer controls
+      document.getElementById('openSavedBtn').addEventListener('click', openSavedDrawer);
+      document.getElementById('closeSavedBtn').addEventListener('click', () => {
+        document.getElementById('savedDrawer').classList.add('hidden');
+      });
+
+      // Submit Trend Modal controls
+      document.getElementById('openSubmitBtn').addEventListener('click', () => {
+        document.getElementById('submitModal').classList.remove('hidden');
+      });
+      ['closeSubmitBtn', 'cancelSubmitBtn'].forEach(id => {
+        document.getElementById(id).addEventListener('click', () => {
+          document.getElementById('submitModal').classList.add('hidden');
+        });
+      });
+
+      // Submit New Trend Form
+      document.getElementById('submitTrendForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const newTrend = {
+          id: 'trend-' + Date.now(),
+          featured: false,
+          title: document.getElementById('newTitle').value.trim(),
+          category: document.getElementById('newCategory').value,
+          stage: document.getElementById('newStage').value,
+          growth: document.getElementById('newGrowth').value.trim(),
+          author: document.getElementById('newAuthor').value.trim(),
+          date: 'Nov 22, 2026',
+          readTime: '3 min read',
+          image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80',
+          summary: document.getElementById('newSummary').value.trim(),
+          body: document.getElementById('newBody').value.trim().split('\n').filter(Boolean),
+          takeaways: [
+            'Community-submitted intelligence signal verified for radar tracking.',
+            'Early-stage momentum indicates growing industry experimentation.'
+          ],
+          tags: ['Community Signal', document.getElementById('newCategory').value]
+        };
+
+        trends.unshift(newTrend);
+        localStorage.setItem('tp_trends_2026', JSON.stringify(trends));
+        renderTicker();
+        renderGrid();
+        e.target.reset();
+        document.getElementById('submitModal').classList.add('hidden');
+      });
+
+      // Newsletter Form
+      document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('newsletterEmail').value.trim();
+        const fb = document.getElementById('newsletterFeedback');
+        fb.textContent = `✓ Confirmed: ${email} is subscribed to the Sunday Intelligence Dispatch.`;
+        fb.classList.remove('hidden');
+        e.target.reset();
+      });
+    }
+
+    // ---------------------------------------------------------------------
+    // ARTICLE READER MODAL
+    // ---------------------------------------------------------------------
+    function openArticleModal(id) {
+      const item = trends.find(t => t.id === id);
+      if (!item) return;
+      activeModalTrendId = id;
+
+      document.getElementById('modalCategory').textContent = item.category;
+      document.getElementById('modalVelocity').textContent = `${item.growth} (${item.stage})`;
+      document.getElementById('modalTitle').textContent = item.title;
+      document.getElementById('modalAuthor').textContent = `By ${item.author}`;
+      document.getElementById('modalDate').textContent = item.date;
+      document.getElementById('modalReadTime').textContent = item.readTime;
+      document.getElementById('modalImage').src = item.image;
+      document.getElementById('modalImage').alt = item.title;
+
+      document.getElementById('modalBody').innerHTML = item.body.map(p => `<p>${p}</p>`).join('');
+      document.getElementById('modalTakeaways').innerHTML = (item.takeaways || []).map(t => `<li>${t}</li>`).join('');
+
+      updateModalBookmarkButton();
+      document.getElementById('articleModal').classList.remove('hidden');
+    }
+
+    function closeArticleModal() {
+      document.getElementById('articleModal').classList.add('hidden');
+      activeModalTrendId = null;
+    }
+
+    function updateModalBookmarkButton() {
+      if (!activeModalTrendId) return;
+      const btn = document.getElementById('modalBookmarkBtn');
+      const isSaved = savedIds.includes(activeModalTrendId);
+      btn.textContent = isSaved ? '★ Saved in List' : '☆ Save Briefing';
+      btn.onclick = () => {
+        toggleBookmark(activeModalTrendId);
+        updateModalBookmarkButton();
+      };
+    }
+
+    // ---------------------------------------------------------------------
+    // BOOKMARKS & SAVED DRAWER
+    // ---------------------------------------------------------------------
+    function toggleBookmark(id) {
+      if (savedIds.includes(id)) {
+        savedIds = savedIds.filter(item => item !== id);
+      } else {
+        savedIds.push(id);
+      }
+      localStorage.setItem('tp_saved_2026', JSON.stringify(savedIds));
+      updateSavedBadge();
+      renderHero();
+      renderGrid();
+      if (!document.getElementById('savedDrawer').classList.contains('hidden')) {
+        renderSavedList();
+      }
+    }
+
+    function updateSavedBadge() {
+      document.getElementById('savedCountBadge').textContent = savedIds.length;
+    }
+
+    function openSavedDrawer() {
+      renderSavedList();
+      document.getElementById('savedDrawer').classList.remove('hidden');
+    }
+
+    function renderSavedList() {
+      const container = document.getElementById('savedListContainer');
+      const savedTrends = trends.filter(t => savedIds.includes(t.id));
+
+      if (savedTrends.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 space-y-2">
+            <p class="font-display font-bold">Your reading list is empty</p>
+            <p class="text-xs text-paper-muted dark:text-obsidian-muted">Bookmark any trend brief to save it locally for offline reading.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = savedTrends.map(item => `
+        <div class="p-4 rounded-xl border border-paper-border dark:border-obsidian-border bg-paper-bg dark:bg-obsidian-bg space-y-2">
+          <div class="flex items-center justify-between text-[11px] font-mono">
+            <span class="text-brand-accent font-semibold">${item.category}</span>
+            <span class="text-emerald-500">${item.growth}</span>
+          </div>
+          <h4 onclick="document.getElementById('savedDrawer').classList.add('hidden'); openArticleModal('${item.id}')" class="font-display font-bold text-sm cursor-pointer hover:text-brand-light">
+            ${item.title}
+          </h4>
+          <div class="flex items-center justify-between pt-1">
+            <span class="text-[11px] font-mono text-paper-muted">${item.readTime}</span>
+            <button onclick="toggleBookmark('${item.id}')" class="text-xs text-red-500 hover:underline">Remove</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ---------------------------------------------------------------------
+    // PUBLISHER INFO MODALS (ABOUT, METHODOLOGY, ADSENSE, CONTACT, PRIVACY)
+    // ---------------------------------------------------------------------
+    function openInfoModal(type) {
+      const titleEl = document.getElementById('infoModalTitle');
+      const contentEl = document.getElementById('infoModalContent');
+
+      const pages = {
+        about: {
+          title: 'About TRENDPULSE // 2026',
+          html: `
+            <p><strong>TrendPulse</strong> is an independent digital intelligence publication covering high-velocity shifts across artificial intelligence, consumer culture, sustainable infrastructure, and modern business operations.</p>
+            <p>Our editorial team synthesizes quantitative search momentum, patent filings, venture capital allocation, and on-the-ground cultural reporting into concise, actionable briefings for builders, researchers, and decision-makers.</p>
+          `
+        },
+        methodology: {
+          title: 'Editorial & Signal Scoring Methodology',
+          html: `
+            <p>Every trend tracked on TrendPulse is categorized into three adoption stages:</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li><strong>Breakout (+200% YoY):</strong> Early-adopter inflection point with rapid search, developer, or cultural acceleration.</li>
+              <li><strong>Rising (+100% to +200% YoY):</strong> Proven commercial or community traction expanding across early majority adopters.</li>
+              <li><strong>Mainstream:</strong> Established industry standard undergoing structural scaling.</li>
+            </ul>
+          `
+        },
+        adsense: {
+          title: 'Connecting Google AdSense & ads.txt',
+          html: `
+            <p>This template includes a pre-wired Google AdSense header script and a policy-compliant responsive <code class="font-mono">&lt;ins class="adsbygoogle"&gt;</code> display unit separated from navigation controls.</p>
+            <ol class="list-decimal list-inside space-y-2">
+              <li><strong>Add your Publisher ID:</strong> Open <code class="font-mono">index.html</code> and replace both instances of <code class="font-mono">ca-pub-XXXXXXXXXXXXXXXX</code> with your real AdSense Publisher ID.</li>
+              <li><strong>Add your Ad Unit Slot ID:</strong> Create a Responsive Display Ad unit in AdSense and replace <code class="font-mono">1234567890</code> in <code class="font-mono">ADSENSE_CONFIG.displaySlotId</code>.</li>
+              <li><strong>Publish ads.txt:</strong> Upload an <code class="font-mono">ads.txt</code> file to the root of your domain containing:
+                <pre class="mt-1 p-2.5 rounded bg-paper-bg dark:bg-obsidian-bg border border-paper-border dark:border-obsidian-border font-mono text-xs overflow-x-auto select-all">google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0</pre>
+              </li>
+            </ol>
+          `
+        },
+        contact: {
+          title: 'Contact & Editorial Desk',
+          html: `
+            <p>Have a verified trend tip, research dataset, or partnership inquiry? Reach our editorial desk directly:</p>
+            <p class="font-mono text-xs p-3 rounded-lg bg-paper-bg dark:bg-obsidian-bg border border-paper-border dark:border-obsidian-border">
+              Editorial Tips: tips@trendpulse-editorial.example<br/>
+              Press &amp; Partnerships: press@trendpulse-editorial.example
+            </p>
+          `
+        },
+        privacy: {
+          title: 'Privacy Policy & Advertising Disclosure',
+          html: `
+            <p><strong>Data &amp; Local Storage:</strong> TrendPulse stores your theme preference, bookmarked articles, and user-submitted drafts locally in your browser via <code class="font-mono">localStorage</code>. We do not sell personal user records.</p>
+            <p><strong>Third-Party Advertising (Google AdSense):</strong> Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites. Users may opt out of personalized advertising by visiting Google's Ads Settings.</p>
+          `
+        }
+      };
+
+      const selected = pages[type] || pages.about;
+      titleEl.textContent = selected.title;
+      contentEl.innerHTML = selected.html;
+      document.getElementById('infoModal').classList.remove('hidden');
+    }
+
+    function closeInfoModal() {
+      document.getElementById('infoModal').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
